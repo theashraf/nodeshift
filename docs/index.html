@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Documentation Index</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.simplex.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top ">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">Documentation</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="module-index.html">index</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-8">
+	
+		<div id="main">
+			
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+    <section class="readme-section">
+        <article><h1>Nodeshift <a href="https://travis-ci.org/bucharest-gold/nodeshift"><img src="https://travis-ci.org/bucharest-gold/nodeshift.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/bucharest-gold/nodeshift?branch=master"><img src="https://coveralls.io/repos/github/bucharest-gold/nodeshift/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/bucharest-gold/nodeshift.svg" alt="Greenkeeper badge"></a></h1><h2>What is it</h2><p>Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. It's currently under heavy development and APIs are still shifting a bit. However, in spite of its beta nature, you can use nodeshift today to deploy Node.js applications to OpenShift.</p>
+<h2>Prerequisites</h2><ul>
+<li>Node.js - version 8.x or greater</li>
+</ul>
+<h2>Install</h2><p>To install globally: <code>npm install -g nodeshift</code></p>
+<p>or to use in an npm script</p>
+<pre class="prettyprint source"><code>npm install --save-dev nodeshift
+
+// inside package.json
+scripts: {
+  nodeshift: nodeshift
+}
+
+$ npm run nodeshift</code></pre><h2>Core Concepts</h2><h3>Commands &amp; Goals</h3><p>By default, if you run just <code>nodeshift</code>, it will run the <code>deploy</code> goal, which is a shortcut for running <code>resource</code>, <code>build</code> and <code>apply-resource</code>.</p>
+<p><strong>resource</strong> - will parse and create the application resources files on disk</p>
+<p><strong>apply-resource</strong> - does the resource goal and then deploys the resources to your running cluster</p>
+<p><strong>build</strong> - archives the code, creates a build config and imagestream and pushes the binary to the cluster</p>
+<p><strong>deploy</strong> -  a shortcut for running <code>resource</code>, <code>build</code> and <code>apply-resource</code></p>
+<p><strong>undeploy</strong> - removes resources that were deployed with the apply-resource command</p>
+<h3><code>.nodeshift</code> Directory</h3><p>The <code>.nodeshift</code> directory contains your resource fragements.  These are <code>.yml</code> files that describe your services, deployments, routes, etc.  By default, nodeshift will create a <code>Service</code> and <code>DeploymentConfig</code> if none are provided.  A <code>Route</code> resource fragment should be provided if you want to expose your application to the outside world.</p>
+<h3>Resource Fragments</h3><p>OpenShift resource fragments are user provided YAML files which describe and enhance your deployed resources.  They are enriched with metadata, labels and more by nodeshift.</p>
+<p>Each resource gets its own file, which contains some skeleton of a resource description. Nodeshift will enrich it and then combine all the resources into a single openshift.yml and openshift.json(located in ./tmp/nodeshift/resource/).</p>
+<p>The resource object's <code>Kind</code>, if not given, will be extracted from the filename.</p>
+<h3>Enrichers</h3><p>Enrichers will add things to the resource fragments, like missing metadata and labels.  If your project uses git, then annotations with the git branch and commit hash will be added to the metadata.</p>
+<p>Default Enrichers will also create a default Service and DeploymentConfig when none are provided.</p>
+<h4>Resource Fragment Parameters</h4><p>Some Resource Fragments might need to have a value set at &quot;run time&quot;.  For example, in the fragment below, we have the <code>${SSO_AUTH_SERVER_URL}</code> parameter:</p>
+<pre class="prettyprint source"><code>    apiVersion: v1
+    kind: Deployment
+    metadata:
+        name: nodejs-rest-http-secured
+    spec:
+      template:
+        spec:
+          containers:
+            - env:
+              - name: SSO_AUTH_SERVER_URL
+                value: &quot;${SSO_AUTH_SERVER_URL}&quot;
+              - name: REALM
+                value: master</code></pre><p>To set that using nodeshift, use the <code>-d</code> option with a KEY=VALUE, like this:</p>
+<pre class="prettyprint source"><code>nodeshift -d SSO_AUTH_SERVER_URL=https://sercure-url</code></pre><!-- For more on writing openshift templates, [see here](https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates) -->
+<h3>API</h3><p>Along with the command line, there is also a public API.  The API mirrors the commands.</p>
+<ul>
+<li><p>resource</p>
+</li>
+<li><p>applyResource</p>
+</li>
+<li><p>build</p>
+</li>
+<li><p>deploy</p>
+</li>
+<li><p>undeploy</p>
+</li>
+</ul>
+<p>Options that you can specify on the command line, can also be passed as an options object to the API</p>
+<p>All methods are Promise based and will return a JSON object with information about each goal that is run.</p>
+<p>For example, if the <code>deploy</code> method was run, it would return something similar:</p>
+<pre class="prettyprint source"><code>{
+    build: {
+        ... // build information
+    },
+    resources: [
+        ... // resources created
+    ],
+    appliedResources: [
+        ... // resources that were applied to the running cluster
+    ]
+}</code></pre><h4>Example Usage</h4><pre class="prettyprint source"><code>const nodeshift = require('nodeshift');
+
+// Deploy an Application
+nodeshift.deploy().then((response) => {
+    console.log(response);
+    console.log('Application Deployed')
+}).catch((err) => {
+    console.log(err);
+})</code></pre><p><em>please note: Currently, once a route, service, deployment config, build config, and imagestream config are created, those are re-used. The only thing that changes from deployment to deployment is the source code.  For application resources, you can update them by undeploying and then deploying again.  BuildConfigs and Imagestreams can be re-created using the --build.recreate flag</em></p>
+<h2>Advanced Options</h2><p>While nodeshift is very opinionated about deployment parameters, both the CLI and the API accept options that allow you to customize nodeshift's behavior.</p>
+<h4>version</h4><p>Outputs the current version of nodeshift</p>
+<h4>projectLocation</h4><p>Changes the default location of where to look for your project. Defaults to your current working directory(CWD)</p>
+<h4>strictSSL</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-rest-client">Openshift Rest Client</a> for SSL use.  To allow using a self-signed cert, set to false</p>
+<h4>tryServiceAccount</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-config-loader">Openshift Config Loader</a>. Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable</p>
+<h4>nodeVersion</h4><p>Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/">bucharest-gold s2i images</a></p>
+<h4>quiet</h4><p>supress INFO and TRACE lines from output logs.</p>
+<h4>build.recreate</h4><p>Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are &quot;buildConfig&quot;, &quot;imageStream&quot;, false, true.  If true, both are re-created</p>
+<h4>build.forcePull</h4><p>Flag to make your BuildConfig always pull a new image from dockerhub.  Defaults to false</p>
+<h4>help</h4><p>Shows the below help</p>
+<pre class="prettyprint source"><code>    Usage: nodeshift [--options]
+
+    Commands:
+        nodeshift deploy          default command - deploy                   [default]
+        nodeshift build           build command
+        nodeshift resource        resource command
+        nodeshift apply-resource  apply resource command
+        nodeshift undeploy        undeploy resources
+
+    Options:
+        --version                Show version number                         [boolean]
+        --projectLocation        change the default location of the project   [string]
+        --strictSSL          setting to pass to the Openshift Rest Client. Set to
+                                false if using a self-sign cert
+        --tryServiceAccount  setting to pass to the Openshift Config Loader.
+                                Set to false to by-pass service account lookup
+                                or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT
+                                environment variable
+
+        --nodeVersion, -n        the version of Node.js to use for the deployed
+                                application.
+                [string] [choices: &quot;latest&quot;, &quot;9.x&quot;, &quot;8.x&quot;, &quot;7.x&quot;, &quot;6.x&quot;, &quot;5.x&quot;, &quot;4.x&quot;]
+                                                                    [default: &quot;latest&quot;]
+        --quiet                  supress INFO and TRACE lines from output logs
+                                                                            [boolean]
+        --build.recreate         flag to recreate a buildConfig or Imagestream
+                [choices: &quot;buildConfig&quot;, &quot;imageStream&quot;, false, true] [default: false]
+        --build.forcePull        flag to make your BuildConfig always pull a new image
+                                from dockerhub or not
+                                    [boolean] [choices: true, false] [default: false]
+        --metadata.out           determines what should be done with the response
+                                metadata from OpenShift
+                [string] [choices: &quot;stdout&quot;, &quot;ignore&quot;, &quot;&lt;filename>&quot;] [default: &quot;ignore&quot;]
+        --help                   Show help                                   [boolean]
+        --cmd                                                      [default: &quot;deploy&quot;]</code></pre><h2>Contributing</h2><p>Please read the <a href="./CONTRIBUTING.md">contributing guide</a></p></article>
+    </section>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
+	
+		on 2017-12-11T20:51:22+00:00
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
