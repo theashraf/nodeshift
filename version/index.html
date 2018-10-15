@@ -105,12 +105,14 @@ $ npm run nodeshift</code></pre><h2>Core Concepts</h2><h3>Commands &amp; Goals</
 <p><strong>build</strong> - archives the code, creates a build config and imagestream and pushes the binary to the cluster</p>
 <p><strong>deploy</strong> -  a shortcut for running <code>resource</code>, <code>build</code> and <code>apply-resource</code></p>
 <p><strong>undeploy</strong> - removes resources that were deployed with the apply-resource command</p>
-<h3><code>.nodeshift</code> Directory</h3><p>The <code>.nodeshift</code> directory contains your resource fragements.  These are <code>.yml</code> files that describe your services, deployments, routes, etc.  By default, nodeshift will create a <code>Service</code> and <code>DeploymentConfig</code> if none are provided.  A <code>Route</code> resource fragment should be provided if you want to expose your application to the outside world.</p>
+<h3><code>.nodeshift</code> Directory</h3><p>The <code>.nodeshift</code> directory contains your resource fragements.  These are <code>.yml</code> files that describe your services, deployments, routes, etc.  By default, nodeshift will create a <code>Service</code> and <code>DeploymentConfig</code> in memory, if none are provided.  A <code>Route</code> resource fragment should be provided or use the <code>expose</code> flag if you want to expose your application to the outside world.</p>
 <h3>Resource Fragments</h3><p>OpenShift resource fragments are user provided YAML files which describe and enhance your deployed resources.  They are enriched with metadata, labels and more by nodeshift.</p>
 <p>Each resource gets its own file, which contains some skeleton of a resource description. Nodeshift will enrich it and then combine all the resources into a single openshift.yml and openshift.json(located in ./tmp/nodeshift/resource/).</p>
 <p>The resource object's <code>Kind</code>, if not given, will be extracted from the filename.</p>
 <h3>Enrichers</h3><p>Enrichers will add things to the resource fragments, like missing metadata and labels.  If your project uses git, then annotations with the git branch and commit hash will be added to the metadata.</p>
 <p>Default Enrichers will also create a default Service and DeploymentConfig when none are provided.</p>
+<p>The default port value is 8080, but that can be overriden with the <code>--deploy.port</code> flag.</p>
+<p>You can also override this value by provideding a .nodeshift/deployment.yaml resource file</p>
 <h4>Resource Fragment Parameters</h4><p>Some Resource Fragments might need to have a value set at &quot;run time&quot;.  For example, in the fragment below, we have the <code>${SSO_AUTH_SERVER_URL}</code> parameter:</p>
 <pre class="prettyprint source"><code>    apiVersion: v1
     kind: Deployment
@@ -166,11 +168,21 @@ nodeshift.deploy().then((response) => {
 <h4>version</h4><p>Outputs the current version of nodeshift</p>
 <h4>projectLocation</h4><p>Changes the default location of where to look for your project. Defaults to your current working directory(CWD)</p>
 <h4>strictSSL</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-rest-client">Openshift Rest Client</a> for SSL use.  To allow using a self-signed cert, set to false</p>
+<h4>configLocation</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-config-loader">Openshift Config Loader</a>.  Defaults to the <code>~/.kube/config</code></p>
 <h4>tryServiceAccount</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-config-loader">Openshift Config Loader</a>. Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable</p>
-<h4>nodeVersion</h4><p>Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/">bucharest-gold s2i images</a></p>
+<h4>nodeVersion - DEPRECATED</h4><p>This flag is now deprecated.  Please use imageTag instead.</p>
+<p>Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/">bucharest-gold s2i images</a></p>
+<h4>imageTag</h4><p>Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/">bucharest-gold s2i images</a></p>
+<h4>dockerImage</h4><p>Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs">bucharestgold/centos7-s2i-nodejs</a></p>
 <h4>quiet</h4><p>supress INFO and TRACE lines from output logs.</p>
+<h4>expose</h4><p>options to create a default route, if non is provided.  Defaults to false</p>
+<h4>removeAll</h4><p>option to remove builds, buildConfigs and Imagestreams.  Defaults to false - <strong>Only for the <code>undeploy</code> Command</strong></p>
+<h4>deploy.port</h4><p>Flag to update the default ports on the resource files. Defaults to 8080</p>
+<h4>deploy.env</h4><p>Flag to pass deployment config environment variables as NAME=Value.  Can be used multiple times.  ex: <code>nodeshift --deploy.env NODE_ENV=development --deploy.env YARN_ENABLED=true</code></p>
 <h4>build.recreate</h4><p>Flag to recreate a BuildConfig or Imagestream.  Defaults to false. Choices are &quot;buildConfig&quot;, &quot;imageStream&quot;, false, true.  If true, both are re-created</p>
 <h4>build.forcePull</h4><p>Flag to make your BuildConfig always pull a new image from dockerhub.  Defaults to false</p>
+<h4>build.incremental</h4><p>Flag to perform incremental builds(if applicable), which means it reuses artifacts from previously-built images. Defaults to false</p>
+<h4>build.env</h4><p>Flag to pass build config environment variables as NAME=Value.  Can be used multiple times.  ex: <code>nodeshift --build.env NODE_ENV=development --build.env YARN_ENABLED=true</code></p>
 <h4>help</h4><p>Shows the below help</p>
 <pre class="prettyprint source"><code>    Usage: nodeshift [--options]
 
@@ -195,12 +207,24 @@ nodeshift.deploy().then((response) => {
                                 application.
                 [string] [choices: &quot;latest&quot;, &quot;9.x&quot;, &quot;8.x&quot;, &quot;7.x&quot;, &quot;6.x&quot;, &quot;5.x&quot;, &quot;4.x&quot;]
                                                                     [default: &quot;latest&quot;]
+        --imageTag           The tag of the docker image to use for the deployed
+                            application.                 [string] [default: &quot;latest&quot;]
         --quiet                  supress INFO and TRACE lines from output logs
                                                                             [boolean]
+        --expose            flag to create a default Route and expose the default
+                   service [boolean] [choices: true, false] [default: false]
+        --namespace          flag to specify the project namespace to build/deploy
+                   into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+                                                                    [string]
+        --deploy.port        flag to update the default ports on the resource files.
+                   Defaults to 8080                          [default: 8080]
         --build.recreate         flag to recreate a buildConfig or Imagestream
                 [choices: &quot;buildConfig&quot;, &quot;imageStream&quot;, false, true] [default: false]
         --build.forcePull        flag to make your BuildConfig always pull a new image
                                 from dockerhub or not
+                                    [boolean] [choices: true, false] [default: false]
+        --build.incremental  flag to perform incremental builds, which means it reuses
+                                artifacts from previously-built images
                                     [boolean] [choices: true, false] [default: false]
         --metadata.out           determines what should be done with the response
                                 metadata from OpenShift
@@ -252,7 +276,7 @@ nodeshift.deploy().then((response) => {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-12-12T14:20:15+00:00
+		on 2018-10-15T09:17:56-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

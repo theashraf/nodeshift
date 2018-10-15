@@ -343,7 +343,75 @@
 
         <tr>
             
-                <td class="name"><code>nodeVersion</code></td>
+                <td class="name"><code>expose</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Set to true to create a default Route and expose the default service.  defaults to false</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namespace</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeVersion(deprecated)</code></td>
             
 
             <td class="type">
@@ -371,6 +439,40 @@
             
 
             <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>imageTag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -405,6 +507,136 @@
             
 
             <td class="description last">supress INFO and TRACE lines from output logs</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>deploy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to update the default ports on the resource files. Defaults to 8080</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>env</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an array of objects to pass deployment config environment variables.  [{name: NAME_PROP, value: VALUE}]</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -869,7 +1101,41 @@
 
         <tr>
             
-                <td class="name"><code>nodeVersion</code></td>
+                <td class="name"><code>namespace</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeVersion(deprecated)</code></td>
             
 
             <td class="type">
@@ -897,6 +1163,40 @@
             
 
             <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>imageTag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -1054,6 +1354,40 @@
             
 
             <td class="description last">flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>env</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an array of objects to pass build config environment variables.  [{name: NAME_PROP, value: VALUE}]</td>
         </tr>
 
     
@@ -1395,7 +1729,75 @@
 
         <tr>
             
-                <td class="name"><code>nodeVersion</code></td>
+                <td class="name"><code>expose</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Set to true to create a default Route and expose the default service.  defaults to false</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namespace</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeVersion(deprecated)</code></td>
             
 
             <td class="type">
@@ -1423,6 +1825,40 @@
             
 
             <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>imageTag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -1457,6 +1893,136 @@
             
 
             <td class="description last">supress INFO and TRACE lines from output logs</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>deploy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to update the default ports on the resource files. Defaults to 8080</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>env</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an array of objects to pass deployment config environment variables.  [{name: NAME_PROP, value: VALUE}]</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -1580,6 +2146,40 @@
             
 
             <td class="description last">flag to make your BuildConfig always pull a new image from dockerhub or not. Defaults to false</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>env</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an array of objects to pass build config environment variables.  [{name: NAME_PROP, value: VALUE}]</td>
         </tr>
 
     
@@ -1922,7 +2522,75 @@
 
         <tr>
             
-                <td class="name"><code>nodeVersion</code></td>
+                <td class="name"><code>expose</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Set to true to create a default Route and expose the default service.  defaults to false</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namespace</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeVersion(deprecated)</code></td>
             
 
             <td class="type">
@@ -1950,6 +2618,40 @@
             
 
             <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>imageTag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -2448,7 +3150,41 @@
 
         <tr>
             
-                <td class="name"><code>nodeVersion</code></td>
+                <td class="name"><code>namespace</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeVersion(deprecated)</code></td>
             
 
             <td class="type">
@@ -2476,6 +3212,40 @@
             
 
             <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>imageTag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -2510,6 +3280,170 @@
             
 
             <td class="description last">supress INFO and TRACE lines from output logs</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>removeAll</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">option to remove builds, buildConfigs and Imagestreams.  Defaults to false</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>deploy</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>port</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to update the default ports on the resource files. Defaults to 8080</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>env</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">an array of objects to pass deployment config environment variables.  [{name: NAME_PROP, value: VALUE}]</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -2818,7 +3752,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2017-12-12T14:20:15+00:00
+		on 2018-10-15T09:17:56-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
