@@ -86,7 +86,8 @@
 
 
     <section class="readme-section">
-        <article><h1>Nodeshift <a href="https://travis-ci.org/bucharest-gold/nodeshift"><img src="https://travis-ci.org/bucharest-gold/nodeshift.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/bucharest-gold/nodeshift?branch=master"><img src="https://coveralls.io/repos/github/bucharest-gold/nodeshift/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/bucharest-gold/nodeshift.svg" alt="Greenkeeper badge"></a></h1><h2>What is it</h2><p>Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. It's currently under heavy development and APIs are still shifting a bit. However, in spite of its beta nature, you can use nodeshift today to deploy Node.js applications to OpenShift.</p>
+        <article><h1>Nodeshift <a href="https://circleci.com/gh/nodeshift/nodeshift"><img src="https://circleci.com/gh/nodeshift/nodeshift.svg?style=svg" alt="CircleCI"></a></h1><p><a href="https://travis-ci.org/nodeshift/nodeshift"><img src="https://travis-ci.org/nodeshift/nodeshift.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/github/nodeshift/nodeshift?branch=master"><img src="https://coveralls.io/repos/github/nodeshift/nodeshift/badge.svg?branch=master" alt="Coverage Status"></a> <a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/nodeshift/nodeshift.svg" alt="Greenkeeper badge"></a></p>
+<h2>What is it</h2><p>Nodeshift is an opinionated command line application and programmable API that you can use to deploy Node.js projects to OpenShift. It's currently under heavy development and APIs are still shifting a bit. However, in spite of its beta nature, you can use nodeshift today to deploy Node.js applications to OpenShift.</p>
 <h2>Prerequisites</h2><ul>
 <li>Node.js - version 8.x or greater</li>
 </ul>
@@ -129,7 +130,7 @@ $ npm run nodeshift</code></pre><h2>Core Concepts</h2><h3>Commands &amp; Goals</
                 value: master</code></pre><p>To set that using nodeshift, use the <code>-d</code> option with a KEY=VALUE, like this:</p>
 <pre class="prettyprint source"><code>nodeshift -d SSO_AUTH_SERVER_URL=https://sercure-url</code></pre><!-- For more on writing openshift templates, [see here](https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates) -->
 <h3>API</h3><p>Along with the command line, there is also a public API.  The API mirrors the commands.</p>
-<p>API Docs - https://bucharest-gold.github.io/nodeshift/</p>
+<p>API Docs - https://nodeshift.github.io/nodeshift/</p>
 <ul>
 <li><p>resource</p>
 </li>
@@ -167,13 +168,9 @@ nodeshift.deploy().then((response) => {
 <h2>Advanced Options</h2><p>While nodeshift is very opinionated about deployment parameters, both the CLI and the API accept options that allow you to customize nodeshift's behavior.</p>
 <h4>version</h4><p>Outputs the current version of nodeshift</p>
 <h4>projectLocation</h4><p>Changes the default location of where to look for your project. Defaults to your current working directory(CWD)</p>
-<h4>strictSSL</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-rest-client">Openshift Rest Client</a> for SSL use.  To allow using a self-signed cert, set to false</p>
 <h4>configLocation</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-config-loader">Openshift Config Loader</a>.  Defaults to the <code>~/.kube/config</code></p>
-<h4>tryServiceAccount</h4><p>This option is passed through to the <a href="https://www.npmjs.com/package/openshift-config-loader">Openshift Config Loader</a>. Set to false to by-pass service account lookup or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT environment variable</p>
-<h4>nodeVersion - DEPRECATED</h4><p>This flag is now deprecated.  Please use imageTag instead.</p>
-<p>Specify the version of Node.js to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/">bucharest-gold s2i images</a></p>
-<h4>imageTag</h4><p>Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/">bucharest-gold s2i images</a></p>
-<h4>dockerImage</h4><p>Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to <a href="https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs">bucharestgold/centos7-s2i-nodejs</a></p>
+<h4>imageTag</h4><p>Specify the tag of the docker image to use for the deployed application. defaults to latest.  These version tags corespond to the docker hub tags of the <a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/">nodeshift s2i images</a></p>
+<h4>dockerImage</h4><p>Specify the s2i builder image of Node.js to use for the deployed applications.  Defaults to <a href="https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs">nodeshift/centos7-s2i-nodejs</a></p>
 <h4>quiet</h4><p>supress INFO and TRACE lines from output logs.</p>
 <h4>expose</h4><p>options to create a default route, if non is provided.  Defaults to false</p>
 <h4>removeAll</h4><p>option to remove builds, buildConfigs and Imagestreams.  Defaults to false - <strong>Only for the <code>undeploy</code> Command</strong></p>
@@ -196,25 +193,25 @@ nodeshift.deploy().then((response) => {
     Options:
         --version                Show version number                         [boolean]
         --projectLocation        change the default location of the project   [string]
-        --strictSSL          setting to pass to the Openshift Rest Client. Set to
-                                false if using a self-sign cert
-        --tryServiceAccount  setting to pass to the Openshift Config Loader.
-                                Set to false to by-pass service account lookup
-                                or use the KUBERNETES_AUTH_TRYSERVICEACCOUNT
-                                environment variable
-
-        --nodeVersion, -n        the version of Node.js to use for the deployed
-                                application.
-                [string] [choices: &quot;latest&quot;, &quot;9.x&quot;, &quot;8.x&quot;, &quot;7.x&quot;, &quot;6.x&quot;, &quot;5.x&quot;, &quot;4.x&quot;]
-                                                                    [default: &quot;latest&quot;]
         --imageTag           The tag of the docker image to use for the deployed
                             application.                 [string] [default: &quot;latest&quot;]
         --quiet                  supress INFO and TRACE lines from output logs
                                                                             [boolean]
         --expose            flag to create a default Route and expose the default
                    service [boolean] [choices: true, false] [default: false]
-        --namespace          flag to specify the project namespace to build/deploy
-                   into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files
+        --namespace.displayName  flag to specify the project namespace display name to
+                       build/deploy into.  Overwrites any namespace settings
+                       in your OpenShift or Kubernetes configuration files
+                                                                    [string]
+        --namespace.create       flag to create the namespace if it does not exist.
+                       Only applicable for the build and deploy command.
+                       Must be used with namespace.name            [boolean]
+        --namespace.remove       flag to remove the user created namespace.  Only
+                       applicable for the undeploy command.  Must be used
+                       with namespace.name                         [boolean]
+        --namesapce.name         flag to specify the project namespace name to
+                       build/deploy into.  Overwrites any namespace settings
+                       in your OpenShift or Kubernetes configuration files
                                                                     [string]
         --deploy.port        flag to update the default ports on the resource files.
                    Defaults to 8080                          [default: 8080]
@@ -276,7 +273,7 @@ nodeshift.deploy().then((response) => {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-10-15T09:17:56-04:00
+		on 2019-04-25T14:23:58-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

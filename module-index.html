@@ -275,74 +275,6 @@
 
         <tr>
             
-                <td class="name"><code>strictSSL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to allow self-signed Certs</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tryServiceAccount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to by-pass service account lookup</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>expose</code></td>
             
 
@@ -383,7 +315,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
 
@@ -404,14 +336,35 @@
 
             
 
-            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
-        </tr>
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>nodeVersion(deprecated)</code></td>
+                <td class="name"><code>displayName</code></td>
             
 
             <td class="type">
@@ -438,7 +391,82 @@
 
             
 
-            <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>create</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namesapce.name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
         </tr>
 
     
@@ -472,7 +500,7 @@
 
             
 
-            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -1033,81 +1061,13 @@
 
         <tr>
             
-                <td class="name"><code>strictSSL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to allow self-signed Certs</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tryServiceAccount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to by-pass service account lookup</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>namespace</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
 
@@ -1128,14 +1088,35 @@
 
             
 
-            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
-        </tr>
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>nodeVersion(deprecated)</code></td>
+                <td class="name"><code>displayName</code></td>
             
 
             <td class="type">
@@ -1162,7 +1143,82 @@
 
             
 
-            <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>create</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namesapce.name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
         </tr>
 
     
@@ -1196,7 +1252,7 @@
 
             
 
-            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -1661,74 +1717,6 @@
 
         <tr>
             
-                <td class="name"><code>strictSSL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to allow self-signed Certs</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tryServiceAccount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to by-pass service account lookup</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>expose</code></td>
             
 
@@ -1769,7 +1757,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
 
@@ -1790,14 +1778,35 @@
 
             
 
-            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
-        </tr>
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>nodeVersion(deprecated)</code></td>
+                <td class="name"><code>displayName</code></td>
             
 
             <td class="type">
@@ -1824,7 +1833,82 @@
 
             
 
-            <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>create</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to create the namespace if it does not exist. Only applicable for the build and deploy command. Must be used with namespace.name</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namesapce.name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
         </tr>
 
     
@@ -1858,7 +1942,7 @@
 
             
 
-            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -2454,74 +2538,6 @@
 
         <tr>
             
-                <td class="name"><code>strictSSL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to allow self-signed Certs</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tryServiceAccount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to by-pass service account lookup</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>expose</code></td>
             
 
@@ -2562,7 +2578,7 @@
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
 
@@ -2583,14 +2599,35 @@
 
             
 
-            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
-        </tr>
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>nodeVersion(deprecated)</code></td>
+                <td class="name"><code>displayName</code></td>
             
 
             <td class="type">
@@ -2617,7 +2654,48 @@
 
             
 
-            <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namesapce.name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
         </tr>
 
     
@@ -2651,7 +2729,7 @@
 
             
 
-            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -3082,81 +3160,13 @@
 
         <tr>
             
-                <td class="name"><code>strictSSL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to allow self-signed Certs</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>tryServiceAccount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Set to false to by-pass service account lookup</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>namespace</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
 
@@ -3177,14 +3187,35 @@
 
             
 
-            <td class="description last">Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
-        </tr>
+            <td class="description last">-
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>nodeVersion(deprecated)</code></td>
+                <td class="name"><code>displayName</code></td>
             
 
             <td class="type">
@@ -3211,7 +3242,82 @@
 
             
 
-            <td class="description last">set the nodeversion to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">flag to specify the project namespace display name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>remove</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to remove the user created namespace.  Only applicable for the undeploy command.  Must be used with namespace.name</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>namesapce.name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">flag to specify the project namespace name to build/deploy into.  Overwrites any namespace settings in your OpenShift or Kubernetes configuration files</td>
         </tr>
 
     
@@ -3245,7 +3351,7 @@
 
             
 
-            <td class="description last">set the version to use for the bucharest-gold/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/bucharestgold/centos7-s2i-nodejs/tags/</td>
+            <td class="description last">set the version to use for the nodeshift/centos7-s2i-image.  Versions are docker hub tags: https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags/</td>
         </tr>
 
     
@@ -3752,7 +3858,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a>
 	
-		on 2018-10-15T09:17:56-04:00
+		on 2019-04-25T14:23:58-04:00
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
